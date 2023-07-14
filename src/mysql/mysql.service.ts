@@ -11,6 +11,7 @@ export class MysqlService {
     this.connect = createConnection({
       host: config.get(CONSTANTS.DATABASE_HOST),
       user: config.get(CONSTANTS.DATABASE_USER),
+      password: config.get(CONSTANTS.DATABASE_PASSWORD),
       database: config.get(CONSTANTS.DATABASE_NAME)
     })
   }
