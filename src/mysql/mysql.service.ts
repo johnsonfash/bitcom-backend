@@ -16,7 +16,16 @@ export class MysqlService {
     })
   }
 
-  query(statement: string, placeholder: (string | number | boolean)[] = []) {
+  query(statement: string, placeholder: any[] = []) {
+    return new Promise((resolve, reject) => {
+      this.connect.query(statement, placeholder, (err, results: any) => {
+        if (err) return reject(err)
+        resolve(results?.length ? results?.length === 1 ? results[0] : results : null)
+      })
+    })
+  }
+
+  execute(statement: string, placeholder: any[] = []) {
     return new Promise((resolve, reject) => {
       this.connect.execute(statement, placeholder, (err, results: any) => {
         if (err) return reject(err)
