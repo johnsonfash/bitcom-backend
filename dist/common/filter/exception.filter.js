@@ -20,7 +20,9 @@ let HttpExceptionFilter = exports.HttpExceptionFilter = class HttpExceptionFilte
             .status(status)
             .json({
             statusCode: status,
+            status: false,
             message,
+            data: null,
             cause,
             timestamp: new Date().toISOString(),
             path: request.url,
