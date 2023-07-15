@@ -6,7 +6,7 @@ import { PollingUnitDto } from './dto';
 export class PollingUnitController {
   constructor(private pollingUnitService: PollingUnitService) { }
 
-  @Get(':id')
+  @Get('/')
   getAllPollingUnits() {
     return this.pollingUnitService.getAllPollingUnits();
   }
