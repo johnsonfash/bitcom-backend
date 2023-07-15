@@ -26,7 +26,7 @@ let PollingUnitService = exports.PollingUnitService = class PollingUnitService {
     where polling_unit.uniqueid = ?`, [pollingUnit]);
     }
     async getAllPollingUnits() {
-        return await this.mysql.query(`select uniqueid, polling_unit_name, polling_unit_number, lat, long from polling_unit`);
+        return await this.mysql.query('select uniqueid, polling_unit_name, polling_unit_number, lat, `long` from polling_unit');
     }
     async createPollingUnitResult(dto, ip) {
         const results = dto.results.map(result => ([dto.pollingUnitId, result.party, result.score, dto.name, new Date().toISOString().slice(0, 19).replace('T', ' '), ip]));
