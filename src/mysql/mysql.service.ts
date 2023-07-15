@@ -1,18 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { createConnection } from 'mysql2'
+import { createPool } from 'mysql2';
 import { CONSTANTS } from 'src/common';
 
 @Injectable()
 export class MysqlService {
-  connect: ReturnType<typeof createConnection>;
-  see: any
+  connect: ReturnType<typeof createPool>;
   constructor(config: ConfigService) {
-    this.connect = createConnection({
+    this.connect = createPool({
       host: config.get(CONSTANTS.DATABASE_HOST),
       user: config.get(CONSTANTS.DATABASE_USER),
       password: config.get(CONSTANTS.DATABASE_PASSWORD),
-      database: config.get(CONSTANTS.DATABASE_NAME)
+      database: config.get(CONSTANTS.DATABASE_NAME),
+      waitForConnections: true,
+      connectionLimit: 10,
+      enableKeepAlive: true,
+      keepAliveInitialDelay: 0
     })
   }
 

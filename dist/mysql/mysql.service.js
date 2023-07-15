@@ -16,11 +16,15 @@ const mysql2_1 = require("mysql2");
 const common_2 = require("../common");
 let MysqlService = exports.MysqlService = class MysqlService {
     constructor(config) {
-        this.connect = (0, mysql2_1.createConnection)({
+        this.connect = (0, mysql2_1.createPool)({
             host: config.get(common_2.CONSTANTS.DATABASE_HOST),
             user: config.get(common_2.CONSTANTS.DATABASE_USER),
             password: config.get(common_2.CONSTANTS.DATABASE_PASSWORD),
-            database: config.get(common_2.CONSTANTS.DATABASE_NAME)
+            database: config.get(common_2.CONSTANTS.DATABASE_NAME),
+            waitForConnections: true,
+            connectionLimit: 10,
+            enableKeepAlive: true,
+            keepAliveInitialDelay: 0
         });
     }
     query(statement, placeholder = []) {
