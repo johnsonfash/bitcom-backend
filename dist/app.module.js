@@ -13,11 +13,12 @@ const mysql_module_1 = require("./mysql/mysql.module");
 const lga_module_1 = require("./lga/lga.module");
 const polling_unit_module_1 = require("./polling-unit/polling-unit.module");
 const hello_module_1 = require("./hello/hello.module");
+const agent_module_1 = require("./agent/agent.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [config_1.ConfigModule.forRoot({ isGlobal: true }), mysql_module_1.MysqlModule, lga_module_1.LgaModule, polling_unit_module_1.PollingUnitModule, hello_module_1.HelloModule]
+        imports: [config_1.ConfigModule.forRoot({ isGlobal: true }), mysql_module_1.MysqlModule, lga_module_1.LgaModule, polling_unit_module_1.PollingUnitModule, hello_module_1.HelloModule, agent_module_1.AgentModule]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
