@@ -17,7 +17,7 @@ export class PollingUnitService {
   }
 
   async getAllPollingUnits() {
-    return await this.mysql.query(`select uniqueid from polling_unit`)
+    return await this.mysql.query(`select uniqueid, polling_unit_name, polling_unit_number, lat, long from polling_unit`)
   }
 
   async createPollingUnitResult(dto: PollingUnitDto, ip: string) {
